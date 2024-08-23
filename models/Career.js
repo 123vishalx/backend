@@ -5,21 +5,28 @@ const careerSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    job_type: {
-        type: String,
-        required: true,
-    },
     image: {
         type: String,
         required: true,
     },
-    salary: {
+    details: {
         type: String,
         required: true,
     },
-    category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category',
+    openPosition: {
+        type: Number,
+        required: true,
+    },
+    location: {
+        type: String,
+        required: true,
+    },
+    applyBefore: {
+        type: Date,
+        required: true,
+    },
+    link: {
+        type: String,
         required: true,
     },
     createdAt: {

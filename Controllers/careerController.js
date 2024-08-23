@@ -1,9 +1,9 @@
 const Career = require('../models/Career');
 
-// Get all Career
-exports.getcareers = async (req, res) => {
+// Get all careers
+exports.getCareers = async (req, res) => {
     try {
-        const careers = await Career.find().populate('category');
+        const careers = await Career.find();
         res.json(careers);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -14,10 +14,12 @@ exports.getcareers = async (req, res) => {
 exports.createCareer = async (req, res) => {
     const career = new Career({
         title: req.body.title,
-        job_type: req.body.job_type,
         image: req.body.image,
-        salary: req.body.salary,
-        category: req.body.category,
+        details: req.body.details,
+        openPosition: req.body.openPosition,
+        location: req.body.location,
+        applyBefore: req.body.applyBefore,
+        link: req.body.link,
     });
 
     try {
@@ -49,10 +51,12 @@ exports.updateCareer = async (req, res) => {
         const career = await Career.findById(req.params.id);
         if (career) {
             career.title = req.body.title || career.title;
-            career.content = req.body.content || career.content;
-            career.author = req.body.author || career.author;
-            career.category = req.body.category || career.category;
             career.image = req.body.image || career.image;
+            career.details = req.body.details || career.details;
+            career.openPosition = req.body.openPosition || career.openPosition;
+            career.location = req.body.location || career.location;
+            career.applyBefore = req.body.applyBefore || career.applyBefore;
+            career.link = req.body.link || career.link;
             const updatedCareer = await career.save();
             res.json(updatedCareer);
         } else {

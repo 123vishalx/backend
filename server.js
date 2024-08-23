@@ -31,9 +31,12 @@ app.use('/api/blogs', require('./Routes/Blogs'));
 app.use('/api/categories', require('./Routes/Category'));
 app.use('/api/admin', require('./Routes/Admin'));
 app.use('/api/career', require('./Routes/Career'));
-app.use('/api/formdata', require('./Routes/Formdata'));
+app.use('/api/contact', require('./Routes/contactRoutes')); // New Route for Contact Us
 
 app.get('/', (req, res) => {
+  res.json({ message: "Hello, it's all about Radso Innovations backend" });
+});
+app.get('/api/contact', (req, res) => {
   res.json({ message: "Hello, it's all about Radso Innovations backend" });
 });
 

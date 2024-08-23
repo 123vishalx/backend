@@ -3,7 +3,7 @@ const Blog = require('../models/Blogs');
 // Get all blogs
 exports.getBlogs = async (req, res) => {
     try {
-        const blogs = await Blog.find().populate('category');
+        const blogs = await Blog.find(); // Removed category population
         res.json(blogs);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -16,8 +16,9 @@ exports.createBlog = async (req, res) => {
         title: req.body.title,
         content: req.body.content,
         author: req.body.author,
-        category: req.body.category,
-        image: req.body.image
+        image: req.body.image,
+        date: req.body.date,  // Specify the date manually
+        hashtags: req.body.hashtags,  // Include hashtags if provided
     });
 
     try {
@@ -51,8 +52,10 @@ exports.updateBlog = async (req, res) => {
             blog.title = req.body.title || blog.title;
             blog.content = req.body.content || blog.content;
             blog.author = req.body.author || blog.author;
-            blog.category = req.body.category || blog.category;
             blog.image = req.body.image || blog.image;
+            blog.date = req.body.date || blog.date;  // Allow updating the date
+            blog.hashtags = req.body.hashtags || blog.hashtags;  // Allow updating hashtags if provided
+
             const updatedBlog = await blog.save();
             res.json(updatedBlog);
         } else {

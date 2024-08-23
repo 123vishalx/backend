@@ -13,18 +13,16 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true,
-    },
     image: {
         type: String,
         required: true,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
+    date: {
+        type: String,  // Changed to String to allow manual entry
+        required: true, // Set to true as the date is manually specified
+    },
+    hashtags: {
+        type: [String],  // Array of strings for hashtags
     },
 });
 

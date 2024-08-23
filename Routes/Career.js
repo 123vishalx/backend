@@ -1,11 +1,10 @@
-
 const express = require('express');
 const router = express.Router();
 const CareerController = require('../Controllers/careerController');
 const authMiddleware = require('../Middlewares/auth');
 
-// Get all career (public)
-router.get('/', CareerController.getcareers);
+// Get all careers (public) with pagination
+router.get('/', CareerController.getCareers);
 
 // Create a new career (admin only)
 router.post('/', authMiddleware.verifyAdmin, CareerController.createCareer);
